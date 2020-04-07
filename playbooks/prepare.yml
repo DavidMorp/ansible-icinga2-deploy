@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  gather_facts: true
+  become: true
+  remote_user: ansible
+  environment:
+    NETRC: ''
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') }}"
+  roles:
+    # - role: network
+    - role: common
+    - role: ulimit
+    - role: dnsmasq
+    - role: resolv
+
+
+# prepare the databases
+- hosts: databases
+  gather_facts: true
+  become: true
+  remote_user: ansible
+  environment:
+    NETRC: ''
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') }}"
+  roles:
+    - role: mariadb

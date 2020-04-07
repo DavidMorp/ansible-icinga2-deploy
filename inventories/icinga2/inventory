@@ -1,0 +1,28 @@
+---
+all:
+
+  children:
+
+    databases:
+      hosts:
+        database-1.local.local:
+          ansible_host: 192.168.130.10
+          ansible_ssh_user: ansible
+          # ansible_ssh_pass: "{{ vault__ssh_password__ansible  }}"
+          # ansible_become_pass: "{{ vault__become_password }}"
+        database-2.local.local:
+          ansible_host: 192.168.130.11
+
+    master:
+      hosts:
+        master-1.icinga.local:
+          ansible_host: 192.168.130.20
+        master-2.icinga.local:
+          ansible_host: 192.168.130.21
+
+    satellite:
+      hosts:
+        satellite-1.icinga.local:
+          ansible_host: 192.168.130.30
+        satellite-2.icinga.local:
+          ansible_host: 192.168.130.31
