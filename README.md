@@ -10,7 +10,18 @@ download external ansible roles
 $ ansible-galaxy install -r requirements.yml [--force]
 ```
 
+## DNS
 
+`/etc/hosts`
+
+```
+192.168.130.10          database-1.icinga.local
+192.168.130.11          database-2.icinga.local
+192.168.130.20          master-1.icinga.local
+192.168.130.21          master-2.icinga.local
+192.168.130.30          satellite-1.icinga.local
+192.168.130.31          satellite-2.icinga.local
+```
 
 ## vault support
 
@@ -31,13 +42,6 @@ ansible-playbook --inventory inventories/icinga2 --vault-password-file vault/ans
 ansible-playbook --inventory inventories/icinga2 --vault-password-file vault/ansible-vault.pass playbooks/master.yml
 ansible-playbook --inventory inventories/icinga2 --vault-password-file vault/ansible-vault.pass playbooks/satellite.yml
 
-time ansible-playbook --inventory hosts --vault-password-file host_vars/monitoring.cm.local/ansible-vault.pass monitoring.yml
-
-...
-
-real    4m13,517s
-user    1m46,355s
-sys     0m14,266s
 ```
 
 
