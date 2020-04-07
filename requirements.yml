@@ -1,0 +1,34 @@
+---
+
+- name: network
+  src: https://github.com/linux-system-roles/network.git
+  version: 1.1.0
+
+- name: resolv
+  src: https://github.com/ahuffman/ansible-resolv.git
+  version: 1.3.1
+
+- name: dnsmasq
+  src: https://github.com/bertvv/ansible-dnsmasq.git
+  version: v2.1.0
+
+- name: ulimit
+  src: https://github.com/picotrading/ansible-ulimit.git
+  version: master
+
+# ------------------------------------------------------------------------------------------------------------
+
+- name: mariadb
+  src: https://github.com/bodsch/ansible-mariadb.git
+  version: master
+
+- name: postgresql
+  src: https://github.com/ANXS/postgresql
+  version: v1.12.0
+
+# ------------------------------------------------------------------------------------------------------------
+
+- name: icinga2
+  src: https://gitlab.com/bodsch/ansible-icinga2.git
+  scm: git
+  version: master

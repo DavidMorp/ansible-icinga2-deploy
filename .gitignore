@@ -1,0 +1,8 @@
+*.retry
+roles/*
+!roles/common/*
+files/*.zip
+files/*.war
+files/.*jar
+__pycache__
+
