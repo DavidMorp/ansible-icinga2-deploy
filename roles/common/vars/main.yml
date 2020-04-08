@@ -1,0 +1,54 @@
+---
+# "ansible_os_family | lower": "redhat"
+# "ansible_distribution | lower~ '-' ~ ansible_distribution_major_version": "centos-7"
+# "ansible_distribution | lower": "centos"
+#
+# "ansible_os_family | lower": "debian"
+# "ansible_distribution | lower~ '-' ~ ansible_distribution_major_version": "ubuntu-19"
+# "ansible_distribution | lower": "ubuntu"
+
+_additional_packages:
+  default:
+    - unzip
+    - bind9utils
+  debian:
+    - unzip
+    - bind9utils
+  redhat:
+    - unzip
+    - bind-utils
+    - libselinux-python
+    - policycoreutils-python
+
+# ubuntu-19 / centos-7
+# ubuntu    / centos
+# default   / default
+_unneeded_services:
+  default:
+    - multipathd.service
+    - snapd.service
+    - snapd.socket
+    - snapd.seeded.service
+    - snap.lxd.daemon.unix.socket
+    - systemd-resolved.service
+    - iscsid.socket
+  ubuntu:
+    - multipathd.service
+    - snapd.service
+    - snapd.socket
+    - snapd.seeded.service
+    - snap.lxd.daemon.unix.socket
+    - systemd-resolved.service
+    - iscsid.socket
+  centos:
+    - rpcbind
+    - rpcbind.socket
+
+additional_packages: "{{
+  _additional_packages[ansible_os_family | lower] |
+  default(_additional_packages['default']) }}"
+
+unneeded_services: "{{
+  _unneeded_services[ansible_distribution | lower ~ '-' ~ ansible_distribution_major_version] |
+  default(_unneeded_services[ansible_distribution | lower]) |
+  default(_unneeded_services['default']) }}"
