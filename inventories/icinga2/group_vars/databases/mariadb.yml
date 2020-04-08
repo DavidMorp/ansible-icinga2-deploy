@@ -1,17 +1,10 @@
 ---
 
+mariadb_bind_address: "{{ ansible_default_ipv4.address }}"
+mariadb_root_password: secr3t
+
 mariadb_databases:
   - name: monitoring
-    collation: utf8mb4_bin
-    encoding: utf8mb4
-
-  # content-management-server
-  - name: cm_management
-    collation: utf8mb4_bin
-    encoding: utf8mb4
-
-  # caefeeder-preview
-  - name: cm_mcaefeeder
     collation: utf8mb4_bin
     encoding: utf8mb4
 
@@ -21,15 +14,3 @@ mariadb_users:
     host: "%"
     password: monitoring
     priv: "monitoring.*:ALL"
-
-  # content-management-server
-  - name: cm_management
-    host: "%"
-    password: "{{ vault__cm_management }}"
-    priv: "cm_management.*:ALL"
-
-  # caefeeder-preview
-  - name: cm_mcaefeeder
-    host: "%"
-    password: "{{ vault__cm_mcaefeeder }}"
-    priv: "cm_mcaefeeder.*:ALL"
