@@ -9,5 +9,22 @@
     http_proxy: "{{ lookup('env', 'http_proxy') }}"
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
+
+#   pre_tasks:
+#     - name: clean caches for debian based
+#       command: apt clean
+#       args:
+#         warn: false
+#       when: ansible_os_family | lower == 'debian'
+#     - name: update instance
+#       shell: |
+#         apt update
+#         apt -y dist-upgrade
+#       args:
+#         warn: false
+#       when: ansible_os_family | lower == 'debian'
+
   roles:
+    # - role: common
+    # - role: resolv
     - role: icinga2

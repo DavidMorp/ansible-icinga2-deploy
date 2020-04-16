@@ -25,13 +25,13 @@ all:
           ansible_ssh_user: ansible
           ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
-          ansible_python_interpreter: /usr/bin/python3
+          # ansible_python_interpreter: /usr/bin/python3
         master-2.icinga.local:
           ansible_host: 192.168.130.21
           ansible_ssh_user: ansible
           ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
-          ansible_python_interpreter: /usr/bin/python3
+          # ansible_python_interpreter: /usr/bin/python3
 
     satellite:
       hosts:

@@ -8,9 +8,18 @@ mariadb_databases:
     collation: utf8mb4_bin
     encoding: utf8mb4
 
+  - name: "{{ icinga2_ido_database }}"
+    collation: utf8mb4_bin
+    encoding: utf8mb4
+
 mariadb_users:
 
   - name: monitoring
     host: "%"
     password: monitoring
     priv: "monitoring.*:ALL"
+
+  - name: "{{ icinga2_ido_username }}"
+    host: "192.168.130.0/24"
+    password: "{{ icinga2_ido_password }}"
+    priv: "{{ icinga2_ido_database }}.*:ALL"
