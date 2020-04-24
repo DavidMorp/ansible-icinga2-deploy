@@ -1,3 +1,16 @@
 ---
 
-icinga2_ido_host: '192.168.130.11'
+icinga2_hosts:
+  master-2.icinga.local:
+    import: generic-host
+    address: '{{ ansible_default_ipv4.address }}'
+    vars: |
+      os = "Linux"
+      dist = "{{ ansible_distribution }}"
+      dist_ver = "{{ ansible_distribution_version }}"
+      disks = {
+        "disk /" = {
+          disk_partitions = "/"
+        }
+      }
+

@@ -2,7 +2,7 @@
 roles/*
 !roles/common/*
 files/*.zip
-files/*.war
-files/.*jar
+playbooks/files/ca.crt
+ansible_facts/*
 __pycache__
 

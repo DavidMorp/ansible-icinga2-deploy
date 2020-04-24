@@ -16,7 +16,6 @@
     - role: dnsmasq
     - role: resolv
 
-
 # prepare the databases
 - hosts: databases
   gather_facts: true

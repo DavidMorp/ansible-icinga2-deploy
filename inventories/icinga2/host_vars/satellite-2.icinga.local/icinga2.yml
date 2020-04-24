@@ -1,13 +1,16 @@
 ---
 
-icinga2_hosts:
-  master-1.icinga.local:
+icinga2_satellite:
+  satellite-2.icinga.local:
+    endpoint_name: satellite-2.icinga.local
+    zone: "{{ icinga2_satellite_zone }}"
+    display_name: satellite-2.icinga.local
     import: generic-host
-    address: '{{ ansible_default_ipv4.address }}'
     vars: |
       os = "Linux"
       dist = "{{ ansible_distribution }}"
       dist_ver = "{{ ansible_distribution_version }}"
+      satellite = true
       disks = {
         "disk /" = {
           disk_partitions = "/"

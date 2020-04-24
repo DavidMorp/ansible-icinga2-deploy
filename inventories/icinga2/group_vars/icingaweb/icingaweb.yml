@@ -1,0 +1,165 @@
+---
+
+# nginx
+#
+nginx_server_tokens: "off"
+nginx_remove_default_vhost: true
+
+nginx_extra_http_options: |
+  map_hash_max_size 128;
+  map_hash_bucket_size 128;
+  map $http_user_agent $ignore_ua {
+    default                 1;
+    "ELB-HealthChecker/1.0" 0;
+    "ELB-HealthChecker/2.0" 0;
+  }
+
+nginx_vhosts:
+
+  - listen: 80
+    server_name: _
+    filename: 05-{{ ansible_domain }}.conf
+    extra_parameters: |
+      location / {
+        return 301 /icinga;
+        root                  /var/www/entry-page;
+        index                 index.html;
+        if ($ignore_ua) {
+          access_log off;
+        }
+        access_log            /dev/null;
+        error_log             /dev/null;
+      }
+      location /icinga {
+        #log_not_found       off;
+        #access_log          off;
+        #error_log           off;
+
+        add_header X-Backend "icingaweb2";
+
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $http_x_forwarded_proto;
+
+        root  /usr/share/icingaweb2/public;
+
+        index index.php;
+
+        location ~ ^/icinga/index\.php(.*)$ {
+          fastcgi_index          index.php;
+          fastcgi_param          ICINGAWEB_CONFIGDIR /etc/icingaweb2;
+          fastcgi_param          SCRIPT_FILENAME /usr/share/icingaweb2/public/index.php;
+          fastcgi_read_timeout   600;
+          fastcgi_pass           unix:/run/php/php7.3-fpm.sock;
+          include fastcgi_params;
+        }
+
+        location ~ ^/icinga(.+)? {
+          alias /usr/share/icingaweb2/public;
+          index index.php;
+          try_files $1 $uri $uri/ /icinga/index.php$is_args$args;
+        }
+
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+          expires 1d;
+        }
+      }
+
+# php
+#
+php_enable_php_fpm: true
+
+php_fpm_pools:
+  - name: worker-01
+    user: "{{ php_fpm_pool_user }}"
+    group: "{{ php_fpm_pool_group }}"
+    listen.owner: "{{ php_fpm_pool_user }}"
+    listen.group: "{{ php_fpm_pool_group }}"
+    listen: /run/php/worker-01.sock
+    pm: dynamic
+    pm.max_children: 10
+    pm.start_servers: 4
+    pm.min_spare_servers: 2
+    pm.max_spare_servers: 6
+    pm.status_path: /status
+    ping.path: /ping
+    ping.response: pong
+    access.log: /var/log/php-fpm/$pool_access.log
+    access.format: "%R - %n - %{HTTP_HOST}e - %u %t \"%m %r [%Q%q]\" %s %f %{mili}d %{kilo}M %C%%"
+    chdir: /
+    env:
+      PATH: "/usr/local/bin:/usr/bin:/bin"
+      TMPDIR: "/tmp"
+    php_admin_value:
+      date.timezone: "Europe/Berlin"
+      max_execution_time: 300
+
+php_modules:
+  - name: opcache
+    enabled: true
+    priority: 10
+    content: |
+      zend_extension=opcache.so
+      opcache.enable=1
+      opcache.enable_cli=1
+      opcache.memory_consumption=128
+      opcache.interned_strings_buffer=16
+      opcache.max_accelerated_files=10000
+      opcache.max_wasted_percentage=5
+      opcache.validate_timestamps=1
+      opcache.revalidate_path=0
+      opcache.revalidate_freq=1
+      opcache.max_file_size=0
+  - name: pdo_mysql
+    enabled: true
+    priority: 20
+    content: |
+      extension=pdo_mysql.so
+  - name: apcu
+    enabled: false
+    priority: 20
+    content: |
+      extension=apcu.so
+      apc.shm_size=96M
+      apc.enable_cli=0
+      apc.rfc1867=1
+  - name: gd
+    enabled: true
+    priority: 20
+    content: |
+      extension=gd.so
+  - name: memcached
+    enabled: false
+    priority: 20
+    content: |
+      extension=memcached.so
+
+
+icingaweb_auth_backend:
+  icingaweb:
+    type: db
+    db: mysql
+    host: 192.168.130.10
+    port: 3306
+    dbname: "{{ icingaweb_auth_dba_database }}"
+    username: "{{ icingaweb_auth_dba_username }}"
+    password: "{{ icingaweb_auth_dba_password }}"
+    prefix: icingaweb_
+    charset: utf8
+
+  icinga_ido:
+    type: db
+    db: mysql
+    host: 192.168.130.10
+    port: 3306
+    dbname: "{{ icinga2_ido_database }}"
+    username: "{{ icinga2_ido_username }}"
+    password: "{{ icinga2_ido_password }}"
+    charset: utf8
+
+icinga2_api_host: 192.168.130.20
+icinga2_api_port: 5665
+icinga2_api_username: icingaweb
+icinga2_api_password: S0mh1TuFJI
+

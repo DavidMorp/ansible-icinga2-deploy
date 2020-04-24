@@ -3,3 +3,7 @@
 icinga2_ido_database: icinga2_ido
 icinga2_ido_username: icinga2_ido
 icinga2_ido_password: icinga2_ido
+
+icingaweb_auth_dba_database: icingaweb_config
+icingaweb_auth_dba_username: icingaweb_config
+icingaweb_auth_dba_password: icingaweb_config

@@ -2,50 +2,28 @@
 
 icinga2_mode: master
 
-icinga2_sudo_cmd:
-  - /sbin/service foo restart
+# both masters use on IDO connection
+icinga2_ido_host: '192.168.130.10'
 
 icinga2_api_user:
-  root:
-    password: foo
-    client_cn: NodeName
+  icinga2:
+    password: S0mh1TuFJI
     permissions: '*'
 
-# icinga2_ido_username: icinga2_ido
-# icinga2_ido_password: icinga2_ido
+  icingaweb:
+    password: S0mh1TuFJI
+    permissions:
+      - "status/query"
+      - "actions/*"
+      - "objects/modify/*"
+      - "objects/query/*"
 
-icinga2_mainlog_severity: information
+
+# icinga2_mainlog_severity: information
 
 icinga2_master_features_enabled:
   - checker
   - api
   - ido-mysql
   - mainlog
-  - graphite
-
-# icinga2_features:
-#   graphite:
-#     graphite_host: localhost
-
-# icinga2_plugins_download:
-#   - url: 'https://raw.githubusercontent.com/bodsch/check_arch_updates/1.0/check_arch_updates'
-#     dest: 'check_arch_updates'
-#     checksum: 'sha256:7afa562aaedb63f6e93cfebfa4a9a3ea49fecda62d4dae3d8ff919b76c117c41'
-
-
-icinga2_hosts:
-  localhost:
-    import: generic-host
-    address: '{{ ansible_default_ipv4.address }}'
-    vars: |
-      os = "Linux"
-      dist = "{{ ansible_distribution }}"
-      dist_ver = "{{ ansible_distribution_version }}"
-      disks = {
-        "disk /" = {
-          disk_partitions = "/"
-        }
-      }
-
-icinga2_salt: tmpams80tqx
 

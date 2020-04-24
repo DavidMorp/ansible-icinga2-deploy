@@ -8,9 +8,12 @@ mariadb_databases:
     collation: utf8mb4_bin
     encoding: utf8mb4
 
+  # TODO: latin1
   - name: "{{ icinga2_ido_database }}"
     collation: utf8mb4_bin
     encoding: utf8mb4
+
+  - name: "{{ icingaweb_auth_dba_database }}"
 
 mariadb_users:
 
@@ -20,6 +23,11 @@ mariadb_users:
     priv: "monitoring.*:ALL"
 
   - name: "{{ icinga2_ido_username }}"
-    host: "192.168.130.0/24"
+    host: "%"
     password: "{{ icinga2_ido_password }}"
     priv: "{{ icinga2_ido_database }}.*:ALL"
+
+  - name: "{{ icingaweb_auth_dba_username }}"
+    host: "%"
+    password: "{{ icingaweb_auth_dba_password }}"
+    priv: "{{ icingaweb_auth_dba_database }}.*:ALL"

@@ -1,1 +1,35 @@
- 
+---
+
+icinga2_mode: satellite
+
+icinga2_satellites:
+
+  zone1:
+    satellite-1.icinga.local:
+      ip: 192.168.130.30
+    satellite-2.icinga.local:
+      ip: 192.168.130.31
+
+  zone2:
+    satellite-3.icinga.local:
+      ip: 192.168.130.32
+    satellite-4.icinga.local:
+      ip: 192.168.130.33
+
+  zone3:
+    satellite-5.icinga.local:
+      ip: 192.168.130.34
+    satellite-6.icinga.local:
+      ip: 192.168.130.35
+
+  zone4:
+    satellite-7.icinga.local:
+      ip: 192.168.130.36
+    satellite-8.icinga.local:
+      ip: 192.168.130.37
+
+  zone5:
+    satellite-9.icinga.local:
+      ip: 192.168.130.38
+    satellite-10.icinga.local:
+      ip: 192.168.130.39

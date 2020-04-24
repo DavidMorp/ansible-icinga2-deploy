@@ -1,8 +1,8 @@
 ---
 
-- name: network
-  src: https://github.com/linux-system-roles/network.git
-  version: 1.1.0
+# - name: network
+#   src: https://github.com/linux-system-roles/network.git
+#   version: 1.1.0
 
 - name: resolv
   src: https://github.com/ahuffman/ansible-resolv.git
@@ -22,13 +22,26 @@
   src: https://github.com/bodsch/ansible-mariadb.git
   version: master
 
-- name: postgresql
-  src: https://github.com/ANXS/postgresql
-  version: v1.12.0
+# - name: postgresql
+#   src: https://github.com/ANXS/postgresql
+#   version: v1.12.0
+
+- name: php-fpm
+  src: https://gitlab.com/bodsch/ansible-php.git
+  scm: git
+  version: master
+
+- name: nginx
+  src: https://github.com/geerlingguy/ansible-role-nginx.git
+  version: 2.7.0
 
 # ------------------------------------------------------------------------------------------------------------
 
-- name: icinga2
-  src: https://gitlab.com/bodsch/ansible-icinga2.git
+# - name: icinga2
+#   src: https://gitlab.com/bodsch/ansible-icinga2.git
+#   scm: git
+#   version: feature/multi-master-HA
+
+- name: icingaweb
+  src: https://gitlab.com/bodsch/ansible-icingaweb2
   scm: git
-  version: feature/multi-master-HA
