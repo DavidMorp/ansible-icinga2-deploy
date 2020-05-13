@@ -10,9 +10,9 @@
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
   roles:
-    # - role: network
     - role: common
     - role: ulimit
+    - role: chrony
     - role: dnsmasq
     - role: resolv
 

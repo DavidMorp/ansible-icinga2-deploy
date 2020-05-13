@@ -1,0 +1,9 @@
+{
+  "icinga2_api": {
+    "user": "icinga2",
+    "password": "S0mh1TuFJI"
+  },
+  "icinga2_downtime_comment": "test",
+  "icinga2_downtime_system_name": "master-1.icinga.local",
+  "icinga2_downtime_duration": 10
+}

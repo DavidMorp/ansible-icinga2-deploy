@@ -2,6 +2,13 @@
 
 icinga2_mode: satellite
 
+icinga2_api:
+  user:
+    icinga2:
+      password: S0mh1TuFJI
+      permissions: '*'
+
+
 icinga2_satellites:
 
   zone1:
@@ -10,26 +17,36 @@ icinga2_satellites:
     satellite-2.icinga.local:
       ip: 192.168.130.31
 
-  zone2:
-    satellite-3.icinga.local:
-      ip: 192.168.130.32
-    satellite-4.icinga.local:
-      ip: 192.168.130.33
+#   zone2:
+#     satellite-3.icinga.local:
+#       ip: 192.168.130.32
+#     satellite-4.icinga.local:
+#       ip: 192.168.130.33
+#
+#   zone3:
+#     satellite-5.icinga.local:
+#       ip: 192.168.130.34
+#     satellite-6.icinga.local:
+#       ip: 192.168.130.35
+#
+#   zone4:
+#     satellite-7.icinga.local:
+#       ip: 192.168.130.36
+#     satellite-8.icinga.local:
+#       ip: 192.168.130.37
+#
+#   zone5:
+#     satellite-9.icinga.local:
+#       ip: 192.168.130.38
+#     satellite-10.icinga.local:
+#       ip: 192.168.130.39
 
-  zone3:
-    satellite-5.icinga.local:
-      ip: 192.168.130.34
-    satellite-6.icinga.local:
-      ip: 192.168.130.35
 
-  zone4:
-    satellite-7.icinga.local:
-      ip: 192.168.130.36
-    satellite-8.icinga.local:
-      ip: 192.168.130.37
-
-  zone5:
-    satellite-9.icinga.local:
-      ip: 192.168.130.38
-    satellite-10.icinga.local:
-      ip: 192.168.130.39
+icinga2_filelogger:
+  directory: /var/log/icinga2
+  mainlog:
+    severity: information
+    logfile: icinga2.log
+  debuglog:
+    severity: debug
+    logfile: debug.log

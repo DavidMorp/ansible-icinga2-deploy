@@ -1,7 +1,11 @@
 ---
 
-icinga2_hosts:
+icinga2_host_object:
+
   master-1.icinga.local:
+    endpoint_name: master-1.icinga.local
+    zone: master
+    display_name: master-1.icinga.local
     import: generic-host
     address: '{{ ansible_default_ipv4.address }}'
     vars: |
@@ -13,3 +17,4 @@ icinga2_hosts:
           disk_partitions = "/"
         }
       }
+      services = [ "uptime", "memory" ]

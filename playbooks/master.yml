@@ -25,6 +25,4 @@
 #       when: ansible_os_family | lower == 'debian'
 
   roles:
-    # - role: common
-    # - role: resolv
     - role: icinga2

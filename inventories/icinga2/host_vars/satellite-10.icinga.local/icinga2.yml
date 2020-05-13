@@ -1,6 +1,6 @@
 ---
 
-icinga2_satellite:
+icinga2_host_object:
   satellite-10.icinga.local:
     endpoint_name: satellite-10.icinga.local
     zone: "{{ icinga2_satellite_zone }}"

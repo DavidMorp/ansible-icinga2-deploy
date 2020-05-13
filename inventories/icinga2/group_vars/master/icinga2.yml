@@ -3,23 +3,26 @@
 icinga2_mode: master
 
 # both masters use on IDO connection
-icinga2_ido_host: '192.168.130.10'
+icinga2_ido:
+  user: "{{ icinga2_ido_username }}"
+  password: "{{ icinga2_ido_password }}"
+  host: '192.168.130.10'
+  cleanup:
+    acknowledgements_age: 72h
 
-icinga2_api_user:
-  icinga2:
-    password: S0mh1TuFJI
-    permissions: '*'
+icinga2_api:
+  user:
+    icinga2:
+      password: S0mh1TuFJI
+      permissions: '*'
 
-  icingaweb:
-    password: S0mh1TuFJI
-    permissions:
-      - "status/query"
-      - "actions/*"
-      - "objects/modify/*"
-      - "objects/query/*"
-
-
-# icinga2_mainlog_severity: information
+    icingaweb:
+      password: S0mh1TuFJI
+      permissions:
+        - "status/query"
+        - "actions/*"
+        - "objects/modify/*"
+        - "objects/query/*"
 
 icinga2_master_features_enabled:
   - checker
@@ -27,3 +30,11 @@ icinga2_master_features_enabled:
   - ido-mysql
   - mainlog
 
+icinga2_filelogger:
+  directory: /var/log/icinga2
+  mainlog:
+    severity: information
+    logfile: icinga2.log
+  debuglog:
+    severity: debug
+    logfile: debug.log

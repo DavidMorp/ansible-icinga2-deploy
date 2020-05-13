@@ -1,11 +1,13 @@
 ---
 
-icinga2_satellite:
+icinga2_host_object:
+
   satellite-1.icinga.local:
     endpoint_name: satellite-1.icinga.local
     zone: "{{ icinga2_satellite_zone }}"
     display_name: satellite-1.icinga.local
     import: generic-host
+    address: '{{ ansible_default_ipv4.address }}'
     vars: |
       os = "Linux"
       dist = "{{ ansible_distribution }}"
@@ -16,3 +18,4 @@ icinga2_satellite:
           disk_partitions = "/"
         }
       }
+      services = [ "uptime" ]
