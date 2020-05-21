@@ -2,7 +2,6 @@
 
 icinga2_mode: master
 
-# both masters use on IDO connection
 icinga2_ido:
   user: "{{ icinga2_ido_username }}"
   password: "{{ icinga2_ido_password }}"
@@ -24,17 +23,12 @@ icinga2_api:
         - "objects/modify/*"
         - "objects/query/*"
 
-icinga2_master_features_enabled:
-  - checker
-  - api
-  - ido-mysql
-  - mainlog
-
-icinga2_filelogger:
-  directory: /var/log/icinga2
-  mainlog:
-    severity: information
-    logfile: icinga2.log
-  debuglog:
-    severity: debug
-    logfile: debug.log
+# icinga2_filelogger:
+#   directory: /var/log/icinga2
+#   mainlog:
+#     severity: information
+#     logfile: icinga2.log
+#   debuglog:
+#     severity: debug
+#     logfile: debug.log
+#

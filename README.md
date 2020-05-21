@@ -16,6 +16,7 @@ $ ansible-galaxy install -r requirements.yml [--force]
 
 ```
 192.168.130.10          database-1.icinga.local
+192.168.130.12          tsdb-1.icinga.local
 192.168.130.15          icingaweb.icinga.local
 192.168.130.20          master-1.icinga.local
 192.168.130.21          master-2.icinga.local

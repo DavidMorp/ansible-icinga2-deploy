@@ -51,7 +51,7 @@ nginx_vhosts:
           fastcgi_param          ICINGAWEB_CONFIGDIR /etc/icingaweb2;
           fastcgi_param          SCRIPT_FILENAME /usr/share/icingaweb2/public/index.php;
           fastcgi_read_timeout   600;
-          fastcgi_pass           unix:/run/php/php7.3-fpm.sock;
+          fastcgi_pass           unix:/run/php/worker-01.sock;
           include fastcgi_params;
         }
 
@@ -69,6 +69,10 @@ nginx_vhosts:
 # php
 #
 php_enable_php_fpm: true
+
+php_fpm_default_pool:
+  delete: true
+  name: www.conf
 
 php_fpm_pools:
   - name: worker-01
@@ -136,28 +140,30 @@ php_modules:
       extension=memcached.so
 
 
-icingaweb_auth_backend:
-  icingaweb:
-    type: db
-    db: mysql
-    host: 192.168.130.10
-    port: 3306
-    dbname: "{{ icingaweb_auth_dba_database }}"
-    username: "{{ icingaweb_auth_dba_username }}"
-    password: "{{ icingaweb_auth_dba_password }}"
-    prefix: icingaweb_
-    charset: utf8
+icingaweb_resources:
+  db:
+    icingaweb:
+      type: db
+      db: mysql
+      host: 192.168.130.10
+      port: 3306
+      dbname: "{{ icingaweb_auth_dba_database }}"
+      username: "{{ icingaweb_auth_dba_username }}"
+      password: "{{ icingaweb_auth_dba_password }}"
+      prefix: icingaweb_
+      charset: utf8
 
-  icinga_ido:
-    type: db
-    db: mysql
-    host: 192.168.130.10
-    port: 3306
-    dbname: "{{ icinga2_ido_database }}"
-    username: "{{ icinga2_ido_username }}"
-    password: "{{ icinga2_ido_password }}"
-    charset: utf8
+    icinga_ido:
+      type: db
+      db: mysql
+      host: 192.168.130.10
+      port: 3306
+      dbname: "{{ icinga2_ido_database }}"
+      username: "{{ icinga2_ido_username }}"
+      password: "{{ icinga2_ido_password }}"
+      charset: utf8
 
+icingaweb_auth_backend: "{{ icingaweb_resources.db.icingaweb }}"
 
 icingaweb_commandtransport:
   master-1:
@@ -173,8 +179,8 @@ icingaweb_commandtransport:
     username: icingaweb
     password: S0mh1TuFJI
 
-icinga2_api_host:
-icinga2_api_port: 5665
-icinga2_api_username:
-icinga2_api_password:
+icinga2_api:
+  user:
+    icingaweb:
+      password: S0mh1TuFJI
 

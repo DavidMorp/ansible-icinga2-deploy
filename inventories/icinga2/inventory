@@ -12,6 +12,15 @@ all:
           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
           ansible_python_interpreter: /usr/bin/python3
 
+    tsdb:
+      hosts:
+        tsdb-1.icinga.local:
+#          ansible_host: 192.168.130.12
+          ansible_ssh_user: ansible
+          ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
+          ansible_become_pass: S1e8Y2J61WPf0uK18q0N
+          ansible_python_interpreter: /usr/bin/python3
+
     icingaweb:
       hosts:
         icingaweb.icinga.local:

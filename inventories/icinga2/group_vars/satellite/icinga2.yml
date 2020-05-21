@@ -8,7 +8,6 @@ icinga2_api:
       password: S0mh1TuFJI
       permissions: '*'
 
-
 icinga2_satellites:
 
   zone1:
@@ -42,11 +41,9 @@ icinga2_satellites:
 #       ip: 192.168.130.39
 
 
-icinga2_filelogger:
-  directory: /var/log/icinga2
-  mainlog:
-    severity: information
-    logfile: icinga2.log
-  debuglog:
-    severity: debug
-    logfile: debug.log
+# icinga2_filelogger:
+#   directory: /var/log/icinga2
+#   mainlog:
+#     severity: information
+#     logfile: icinga2.log
+#

@@ -1,5 +1,18 @@
 ---
 
+icinga2_satellites: []
+
+
+icinga2_filelogger:
+  directory: /var/log/icinga2
+  mainlog:
+    severity: information
+    logfile: icinga2.log
+  debuglog:
+    severity: debug
+    logfile: debug.log
+
+
 icinga2_host_object:
   satellite-3.icinga.local:
     endpoint_name: satellite-3.icinga.local
@@ -17,4 +30,4 @@ icinga2_host_object:
           disk_partitions = "/"
         }
       }
-      services = [ "uptime" ]
+      services = [ "uptime", "memory" ]

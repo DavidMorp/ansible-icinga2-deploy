@@ -1,6 +1,6 @@
 ---
 
-- hosts: icingaweb
+- hosts: tsdb
   gather_facts: true
   become: true
   remote_user: ansible
@@ -9,8 +9,5 @@
     http_proxy: "{{ lookup('env', 'http_proxy') }}"
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
-
   roles:
-    - role: php-fpm
-    - role: nginx
-    - role: icingaweb
+    - role: influxdb
