@@ -47,3 +47,4 @@
 - name: icingaweb
   src: https://gitlab.com/bodsch/ansible-icingaweb2
   scm: git
+  version: feature/support-ubuntu-20
