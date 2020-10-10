@@ -1,0 +1,67 @@
+---
+
+# nginx
+#
+nginx_server_tokens: "off"
+nginx_remove_default_vhost: true
+
+nginx_extra_http_options: |
+  map_hash_max_size 128;
+  map_hash_bucket_size 128;
+  map $http_user_agent $ignore_ua {
+    default                 1;
+    "ELB-HealthChecker/1.0" 0;
+    "ELB-HealthChecker/2.0" 0;
+  }
+
+nginx_vhosts:
+
+  - listen: 80
+    server_name: _
+    filename: 05-{{ ansible_domain }}.conf
+    extra_parameters: |
+      location / {
+        return 301 /icinga;
+        root                  /var/www/entry-page;
+        index                 index.html;
+        if ($ignore_ua) {
+          access_log off;
+        }
+        access_log            /dev/null;
+        error_log             /dev/null;
+      }
+      location /icinga {
+        #log_not_found       off;
+        #access_log          off;
+        #error_log           off;
+
+        add_header X-Backend "icingaweb2";
+
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $http_x_forwarded_proto;
+
+        root  /usr/share/icingaweb2/public;
+
+        index index.php;
+
+        location ~ ^/icinga/index\.php(.*)$ {
+          fastcgi_index          index.php;
+          fastcgi_param          ICINGAWEB_CONFIGDIR /etc/icingaweb2;
+          fastcgi_param          SCRIPT_FILENAME /usr/share/icingaweb2/public/index.php;
+          fastcgi_read_timeout   600;
+          fastcgi_pass           unix:/run/php/worker-01.sock;
+          include fastcgi_params;
+        }
+
+        location ~ ^/icinga(.+)? {
+          alias /usr/share/icingaweb2/public;
+          index index.php;
+          try_files $1 $uri $uri/ /icinga/index.php$is_args$args;
+        }
+
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+          expires 1d;
+        }
+      }

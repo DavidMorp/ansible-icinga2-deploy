@@ -10,4 +10,5 @@
     https_proxy: "{{ lookup('env', 'https_proxy') }}"
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
   roles:
+    - role: monitoring-plugins
     - role: icinga2

@@ -8,27 +8,3 @@ icinga2_ido:
   host: '192.168.130.10'
   cleanup:
     acknowledgements_age: 72h
-
-icinga2_api:
-  user:
-    icinga2:
-      password: S0mh1TuFJI
-      permissions: '*'
-
-    icingaweb:
-      password: S0mh1TuFJI
-      permissions:
-        - "status/query"
-        - "actions/*"
-        - "objects/modify/*"
-        - "objects/query/*"
-
-# icinga2_filelogger:
-#   directory: /var/log/icinga2
-#   mainlog:
-#     severity: information
-#     logfile: icinga2.log
-#   debuglog:
-#     severity: debug
-#     logfile: debug.log
-#

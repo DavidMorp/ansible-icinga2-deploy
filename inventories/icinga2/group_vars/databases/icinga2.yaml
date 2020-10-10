@@ -1,11 +1,13 @@
 ---
 
+icinga2_mode: satellite
+
 icinga2_host_object:
 
-  satellite-1.icinga.local:
-    endpoint_name: satellite-1.icinga.local
+  database.icinga.local:
+    endpoint_name: database.icinga.local
     zone: "{{ icinga2_satellite_zone }}"
-    display_name: satellite-1.icinga.local
+    display_name: database.icinga.local
     import: generic-host
     address: '{{ ansible_default_ipv4.address }}'
     vars: |

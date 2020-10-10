@@ -4,6 +4,15 @@
 #   src: https://github.com/linux-system-roles/network.git
 #   version: 1.1.0
 
+- name: common
+  src: https://gitlab.com/coremedia-as-code/ansible-roles/common.git
+  scm: git
+  version: 1.0.2
+
+- name: sshd
+  src: https://github.com/willshersystems/ansible-sshd.git
+  version: v0.10.2
+
 - name: chrony
   src: https://github.com/Frzk/ansible-role-chrony.git
 
@@ -25,8 +34,12 @@
   src: https://github.com/bodsch/ansible-mariadb.git
   version: master
 
+# - name: mariadb
+#   src: https://github.com/geerlingguy/ansible-role-mysql.git
+#   version: 3.3.0
+
 - name: php-fpm
-  src: https://gitlab.com/bodsch/ansible-php.git
+  src: https://github.com/bodsch/ansible-php.git
   scm: git
   version: master
 
@@ -39,12 +52,17 @@
 
 # ------------------------------------------------------------------------------------------------------------
 
-- name: icinga2
-  src: https://gitlab.com/bodsch/ansible-icinga2.git
+- name: monitoring-plugins
+  src: https://github.com/bodsch/ansible-monitoring-plugins.git
   scm: git
-  version: 0.11.0
+  version: master
+
+- name: icinga2
+  src: https://github.com/bodsch/ansible-icinga2.git
+  scm: git
+  version: master
 
 - name: icingaweb
-  src: https://gitlab.com/bodsch/ansible-icingaweb2
+  src: https://github.com/bodsch/ansible-icingaweb2
   scm: git
-  version: feature/support-ubuntu-20
+  version: master
