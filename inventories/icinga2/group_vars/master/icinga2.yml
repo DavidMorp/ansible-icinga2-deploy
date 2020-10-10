@@ -8,3 +8,51 @@ icinga2_ido:
   host: '192.168.130.10'
   cleanup:
     acknowledgements_age: 72h
+
+
+icinga2_hostgroups:
+  - { name: 'linux-servers', displayname: 'Linux Servers', conditions: 'assign where host.vars.os == "Linux"' }
+  - { name: 'icinga-satellites', displayname: 'Icinga2 Satellites', conditions: 'assign where host.vars.satellite' }
+
+icinga2_servicegroups:
+  - { name: ping      , displayname: 'Ping Checks', conditions: 'assign where match("ping*", service.name)' }
+  - { name: disk      , displayname: 'Disk Checks', conditions: 'assign where match("disk*", service.name)' }
+  - { name: http      , displayname: 'HTTP Checks', conditions: 'assign where match("http: *", service.name)' }
+  - { name: https     , displayname: 'HTTPs Checks', conditions: 'assign where match("https: *", service.name)' }
+  - { name: icinga    , displayname: 'Icinga Checks', conditions: 'assign where match("icinga*", service.name)' }
+  - { name: cert      , displayname: 'TLS certificates', conditions: 'assign where match("tls cert*", service.name)' }
+
+
+icinga2_apply_service:
+  #
+  icinga:
+    check_command: icinga
+    name: 'icinga'
+    display_name: 'icinga satellite'
+    notes: "icinga satellite"
+    notes_url: "/operations/icinga.md"
+    max_check_attempts: 2
+    check_interval: 30s
+    retry_interval: 10s
+    enable_notifications: false
+
+    assign_where: 'host.name == NodeName || host.vars.satellite'
+  #
+  http:
+    name: 'HTTP: '
+    for: '(http_vhost => config in host.vars.http_vhosts)'
+    import: generic-service
+    check_command: http
+    check_interval: 3m
+    extra_parameters: |
+      vars += config
+  #
+  memory:
+    import: generic-service
+    check_command: check_memory
+    check_interval: 45s
+    retry_interval: 10s
+
+    command_endpoint: host.vars.remote_endpoint
+    assign_where: 'host.vars.satellite && host.vars.memory'
+    ignore_where: 'host.vars.os == "Windows"'

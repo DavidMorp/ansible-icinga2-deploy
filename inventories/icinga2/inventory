@@ -10,6 +10,7 @@ all:
           ansible_ssh_user: ansible
           ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
+          #ansible_python_interpreter: /usr/bin/python3
 
 #    tsdb:
 #      hosts:
