@@ -25,7 +25,7 @@ icinga2_host_object:
         "/icinga" = {
           http_port = "80"
           http_uri = "/icinga"
-          http_expect_body_eregi = "Icinga Web 2"
+          # http_expect_body_eregi = "'Icinga Web 2:"
         }
       }
 
