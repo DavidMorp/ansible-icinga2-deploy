@@ -11,3 +11,4 @@
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
   roles:
     - role: influxdb
+    - role: grafana

@@ -1,0 +1,61 @@
+---
+
+grafana_security:
+  admin_user: admin
+  admin_password: admin
+
+grafana_analytics:
+  reporting_enabled: false
+
+grafana_alerting:
+  execute_alerts: false
+
+grafana_metrics:
+  interval_seconds: 10
+  influxdb:
+    address: "localhost:8086"
+    prefix: "prod.grafana.%(instance_name)s"
+
+grafana_auth:
+#  disable_login_form: false
+#  oauth_auto_login: false
+#  disable_signout_menu: false
+#  signout_redirect_url: ""
+  anonymous:
+    org_name: "Main Org."
+    org_role: Viewer
+#  ldap:
+#    config_file: "/etc/grafana/ldap.toml"
+#    allow_sign_up: false
+  basic:
+    enabled: true
+
+grafana_plugins:
+  - grafana-image-renderer
+
+grafana_datasources:
+  - name: "InfluxDB - internal"
+    type: "influxdb"
+    url: "http://localhost:8086"
+    basicAuth: false
+    database: _internal
+    #basicAuthUser: "admin"
+    #basicAuthPassword: "password"
+    isDefault: true
+    #jsonData:
+    #  tlsAuth: false
+    #  tlsAuthWithCACert: false
+    #  tlsSkipVerify: true
+  - name: "InfluxDB - icinga"
+    type: "influxdb"
+    url: "http://localhost:8086"
+    basicAuth: false
+    database: icinga
+    #basicAuthUser: "admin"
+    #basicAuthPassword: "password"
+    #isDefault: true
+
+
+# requierements:
+# libXcomposite libXdamage libXtst cups libXScrnSaver pango atk adwaita-cursor-theme adwaita-icon-theme at at-spi2-atk at-spi2-core cairo-gobject colord-libs dconf desktop-file-utils ed emacs-filesystem gdk-pixbuf2 glib-networking gnutls gsettings-desktop-schemas gtk-update-icon-cache gtk3 hicolor-icon-theme jasper-libs json-glib libappindicator-gtk3 libdbusmenu libdbusmenu-gtk3 libepoxy liberation-fonts liberation-narrow-fonts liberation-sans-fonts liberation-serif-fonts libgusb libindicator-gtk3 libmodman libproxy libsoup libwayland-cursor libwayland-egl libxkbcommon m4 mailx nettle patch psmisc redhat-lsb-core redhat-lsb-submod-security rest spax time trousers xdg-utils xkeyboard-config
+

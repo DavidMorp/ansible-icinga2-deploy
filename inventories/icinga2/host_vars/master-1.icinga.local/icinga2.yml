@@ -17,4 +17,4 @@ icinga2_host_object:
           disk_partitions = "/"
         }
       }
-      services = [ "uptime", "memory" ]
+      services = [ "uptime", "memory", "load" ]

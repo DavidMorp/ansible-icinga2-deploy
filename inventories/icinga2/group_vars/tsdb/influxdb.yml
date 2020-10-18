@@ -1,2 +1,18 @@
 ---
 
+influxdb_redhat_repo: https://repos.influxdata.com/rhel/$releasever/$basearch/stable
+
+influxdb_version: 1.8.3
+
+influxdb_databases:
+  - host: localhost
+    name: icinga2
+    state: present
+    # Defines the retention policy
+    retention_policy:
+      enabled: true
+      name: icinga-1w
+      # Define in hour(h), days(d), weeks(w) or Infinite(INF)
+      duration: 2w
+      replication: 1
+

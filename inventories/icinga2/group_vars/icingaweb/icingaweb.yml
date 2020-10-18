@@ -45,3 +45,31 @@ icingaweb_commandtransport:
 #    port: 5665
 #    username: icingaweb
 #    password: S0mh1TuFJI
+
+icingaweb_external_modules:
+  - grafana:
+    enabled: true
+    name: grafana
+    src: https://github.com/Mikesch-mp/icingaweb2-module-grafana.git
+    version: v1.3.6
+    configuration:
+      # support_grafana_5: false
+      host: tsdb.icinga.local
+      debug: true
+      enableLink: true
+      defaultdashboard:
+        name: base-metrics
+        uid: Z-TfDRpGz
+    graphs:
+      - graph: ping4
+        dashboard: "hostalive"
+        panelId: "9"
+        orgId: "1"
+        repeatable: "no"
+        dashboarduid: "Z-TfDRpGz"
+      - graph: load
+        dashboard: "load"
+        panelId: 4
+        orgId: 2
+        repeatable: false
+        dashboarduid: "Z-TfDRpGz"

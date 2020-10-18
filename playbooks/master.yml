@@ -25,5 +25,4 @@
 #       when: ansible_os_family | lower == 'debian'
 
   roles:
-    - role: monitoring-plugins
     - role: icinga2

@@ -56,3 +56,32 @@ icinga2_apply_service:
     command_endpoint: host.vars.remote_endpoint
     assign_where: 'host.vars.satellite && host.vars.memory'
     ignore_where: 'host.vars.os == "Windows"'
+
+icinga2_master_features_disabled:
+  - livestatus
+
+icinga2_master_features_enabled:
+  - checker
+  - api
+  - ido-mysql
+  - mainlog
+  - notification
+  - influxdb
+
+icinga2_features:
+  influxdb:
+    host: tsdb.icinga.local
+    port: 8086
+    enable_ha: false
+    database: icinga
+    flush_threshold: 1024
+    flush_interval: 10s
+    host_template:
+      measurement: "$host.check_command$"
+      tags:
+        hostname: "$host.name$"
+    service_template:
+      measurement: "$service.check_command$"
+      tags:
+        hostname: "$host.name$"
+        service: "$service.name$"
