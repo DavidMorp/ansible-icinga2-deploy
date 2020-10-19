@@ -55,13 +55,19 @@ icingaweb_external_modules:
     configuration:
       # support_grafana_5: false
       host: tsdb.icinga.local
-      debug: true
+      debug: false
       enableLink: true
       defaultdashboard:
         name: base-metrics
         uid: Z-TfDRpGz
     graphs:
       - graph: ping4
+        dashboard: "hostalive"
+        panelId: "9"
+        orgId: "1"
+        repeatable: "no"
+        dashboarduid: "Z-TfDRpGz"
+      - graph: hostalive
         dashboard: "hostalive"
         panelId: "9"
         orgId: "1"
