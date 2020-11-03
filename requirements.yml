@@ -31,8 +31,9 @@
 # ------------------------------------------------------------------------------------------------------------
 
 - name: mariadb
-  src: https://github.com/geerlingguy/ansible-role-mysql.git
-  version: 3.3.0
+  src: https://github.com/bodsch/ansible-mariadb
+  scm: git
+  # version: 3.3.0
 
 # - name: mariadb
 #   src: https://github.com/geerlingguy/ansible-role-mysql.git
@@ -41,7 +42,7 @@
 - name: php-fpm
   src: https://github.com/bodsch/ansible-php.git
   scm: git
-  version: 1.1.2
+  # version: 1.1.2
 
 - name: nginx
   src: https://github.com/geerlingguy/ansible-role-nginx.git
@@ -91,4 +92,4 @@
 - name: icingaweb
   src: https://github.com/bodsch/ansible-icingaweb2
   scm: git
-  version: feature/support-grafana-module
+  # version: feature/support-grafana-module

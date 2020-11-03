@@ -12,7 +12,7 @@
 
   roles:
     #- role: nginx
-    #- role: php-fpm
+    - role: php-fpm
     - role: icingaweb
     #- role: monitoring-plugins
     #- role: icinga2
