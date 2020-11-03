@@ -12,3 +12,5 @@
   roles:
     - role: go-carbon
     - role: carbonapi
+    - role: influxdb
+    - role: grafana

@@ -11,3 +11,6 @@
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
   roles:
     - role: mariadb
+
+    #- role: monitoring-plugins
+    #- role: icinga2

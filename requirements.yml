@@ -4,6 +4,15 @@
 #   src: https://github.com/linux-system-roles/network.git
 #   version: 1.1.0
 
+- name: common
+  src: https://gitlab.com/coremedia-as-code/ansible-roles/common.git
+  scm: git
+  version: 1.0.2
+
+- name: sshd
+  src: https://github.com/willshersystems/ansible-sshd.git
+  version: v0.10.2
+
 - name: chrony
   src: https://github.com/Frzk/ansible-role-chrony.git
 
@@ -25,6 +34,10 @@
   src: https://github.com/geerlingguy/ansible-role-mysql.git
   version: 3.3.0
 
+# - name: mariadb
+#   src: https://github.com/geerlingguy/ansible-role-mysql.git
+#   version: 3.3.0
+
 - name: php-fpm
   src: https://github.com/bodsch/ansible-php.git
   scm: git
@@ -33,6 +46,12 @@
 - name: nginx
   src: https://github.com/geerlingguy/ansible-role-nginx.git
   version: 2.7.0
+
+- name: monitoring-tools
+  src: https://github.com/bodsch/ansible-monitoring-plugins.git
+  version: 1.2.0
+
+# ------------------------------------------------------------------------------------------------------------
 
 # - name: go-carbon
 #   src: https://gitlab.com/bodsch/ansible-go-carbon.git
@@ -43,21 +62,33 @@
 #   src: https://gitlab.com/bodsch/ansible-carbonapi.git
 #   scm: git
 #   version: 1.0.0
+
 #
 # - name: influxdb
 #   src: https://github.com/rockandska/ansible-role-influxdb
+- name: influxdb
+  src: https://github.com/mrlesmithjr/ansible-influxdb.git
+  scm: git
+  version: master
 
-- name: monitoring-tools
-  src: https://github.com/bodsch/ansible-monitoring-plugins.git
-  version: 1.2.0
+- name: grafana
+  src: https://github.com/cloudalchemy/ansible-grafana.git
+  scm: git
+  version: 0.18.0
 
 # ------------------------------------------------------------------------------------------------------------
 
+- name: monitoring-plugins
+  src: https://github.com/bodsch/ansible-monitoring-plugins.git
+  scm: git
+  version: 1.2.0
+
 - name: icinga2
-  src: https://github.com/bodsch/ansible-icinga2
+  src: https://github.com/bodsch/ansible-icinga2.git
   scm: git
   version: 1.2.1
 
 - name: icingaweb
   src: https://github.com/bodsch/ansible-icingaweb2
   scm: git
+  version: feature/support-grafana-module

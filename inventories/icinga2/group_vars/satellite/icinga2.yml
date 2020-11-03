@@ -2,19 +2,13 @@
 
 icinga2_mode: satellite
 
-icinga2_api:
-  user:
-    icinga2:
-      password: S0mh1TuFJI
-      permissions: '*'
-
-icinga2_satellites:
-
-  zone1:
-    satellite-1.icinga.local:
-      ip: 192.168.130.30
-    satellite-2.icinga.local:
-      ip: 192.168.130.31
+#icinga2_satellites:
+#
+#  zone1:
+#    satellite-1.icinga.local:
+#      ip: 192.168.130.30
+#    satellite-2.icinga.local:
+#      ip: 192.168.130.31
 
 #   zone2:
 #     satellite-3.icinga.local:

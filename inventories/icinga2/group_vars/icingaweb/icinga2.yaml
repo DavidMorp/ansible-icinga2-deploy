@@ -1,11 +1,13 @@
 ---
 
+icinga2_mode: satellite
+
 icinga2_host_object:
 
-  satellite-1.icinga.local:
-    endpoint_name: satellite-1.icinga.local
+  icingaweb.icinga.local:
+    endpoint_name: icingaweb.icinga.local
     zone: "{{ icinga2_satellite_zone }}"
-    display_name: satellite-1.icinga.local
+    display_name: icingaweb.icinga.local
     import: generic-host
     address: '{{ ansible_default_ipv4.address }}'
     vars: |
@@ -18,4 +20,13 @@ icinga2_host_object:
           disk_partitions = "/"
         }
       }
+
+      http_vhosts = {
+        "/icinga" = {
+          http_port = "80"
+          http_uri = "/icinga"
+          # http_expect_body_eregi = "'Icinga Web 2:"
+        }
+      }
+
       services = [ "uptime", "memory" ]

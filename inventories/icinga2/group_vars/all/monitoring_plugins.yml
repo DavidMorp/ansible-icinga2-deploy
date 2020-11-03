@@ -1,0 +1,4 @@
+---
+
+monitoring_plugins_blacklist:
+  - nagios-plugins-mysql
