@@ -15,35 +15,49 @@
   src: https://github.com/bertvv/ansible-dnsmasq.git
   version: v2.1.0
 
-- name: ulimit
-  src: https://github.com/picotrading/ansible-ulimit.git
-  version: master
+# - name: ulimit
+#   src: https://github.com/picotrading/ansible-ulimit.git
+#   version: master
 
 # ------------------------------------------------------------------------------------------------------------
 
 - name: mariadb
-  src: https://github.com/bodsch/ansible-mariadb.git
-  version: master
+  src: https://github.com/geerlingguy/ansible-role-mysql.git
+  version: 3.3.0
 
 - name: php-fpm
-  src: https://gitlab.com/bodsch/ansible-php.git
+  src: https://github.com/bodsch/ansible-php.git
   scm: git
-  version: master
+  version: 1.1.2
 
 - name: nginx
   src: https://github.com/geerlingguy/ansible-role-nginx.git
   version: 2.7.0
 
-- name: influxdb
-  src: https://github.com/rockandska/ansible-role-influxdb
+# - name: go-carbon
+#   src: https://gitlab.com/bodsch/ansible-go-carbon.git
+#   scm: git
+#   version: 1.1.0
+#
+# - name: carbonapi
+#   src: https://gitlab.com/bodsch/ansible-carbonapi.git
+#   scm: git
+#   version: 1.0.0
+#
+# - name: influxdb
+#   src: https://github.com/rockandska/ansible-role-influxdb
+
+- name: monitoring-tools
+  src: https://github.com/bodsch/ansible-monitoring-plugins.git
+  version: 1.2.0
 
 # ------------------------------------------------------------------------------------------------------------
 
 - name: icinga2
-  src: https://gitlab.com/bodsch/ansible-icinga2.git
+  src: https://github.com/bodsch/ansible-icinga2
   scm: git
-  version: 0.11.0
+  version: 1.2.1
 
 - name: icingaweb
-  src: https://gitlab.com/bodsch/ansible-icingaweb2
+  src: https://github.com/bodsch/ansible-icingaweb2
   scm: git

@@ -18,3 +18,4 @@ icinga2_host_object:
         }
       }
       services = [ "uptime" ]
+      memory = true

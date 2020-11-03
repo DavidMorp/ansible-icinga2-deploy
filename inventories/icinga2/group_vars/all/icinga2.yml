@@ -4,6 +4,20 @@ icinga2_salt: 42T2fYT7bIxj5v291ajAW6kK0njvNMww8eWinBdEO5vh02xwC5qaNMMx77qNkYFE
 
 icinga2_ha: true
 
+icinga2_api:
+  user:
+    icinga2:
+      password: S0mh1TuFJI
+      permissions: '*'
+
+    icingaweb:
+      password: S0mh1TuFJI
+      permissions:
+        - "status/query"
+        - "actions/*"
+        - "objects/modify/*"
+        - "objects/query/*"
+
 icinga2_masters:
   master-1.icinga.local:
     # type: primary

@@ -1,0 +1,8 @@
+---
+
+carbonapi_listen: '{{ ansible_default_ipv4.address }}:8088'
+
+#carbonapi_cache_type: memcache
+#carbonapi_cache_size_mb: 150
+#carbonapi_cache_memcached_servers:
+#  - "127.0.0.1:11211"
