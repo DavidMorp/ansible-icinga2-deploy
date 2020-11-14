@@ -1,9 +1,5 @@
 ---
 
-# - name: network
-#   src: https://github.com/linux-system-roles/network.git
-#   version: 1.1.0
-
 - name: common
   src: https://gitlab.com/coremedia-as-code/ansible-roles/common.git
   scm: git
@@ -24,10 +20,6 @@
   src: https://github.com/bertvv/ansible-dnsmasq.git
   version: v2.1.0
 
-# - name: ulimit
-#   src: https://github.com/picotrading/ansible-ulimit.git
-#   version: master
-
 # ------------------------------------------------------------------------------------------------------------
 
 - name: mariadb
@@ -42,7 +34,7 @@
 - name: php-fpm
   src: https://github.com/bodsch/ansible-php.git
   scm: git
-  # version: 1.1.2
+  version: 1.1.3
 
 - name: nginx
   src: https://github.com/geerlingguy/ansible-role-nginx.git
@@ -50,7 +42,7 @@
 
 - name: monitoring-tools
   src: https://github.com/bodsch/ansible-monitoring-plugins.git
-  version: 1.2.0
+  version: 1.2.1
 
 # ------------------------------------------------------------------------------------------------------------
 
@@ -79,17 +71,12 @@
 
 # ------------------------------------------------------------------------------------------------------------
 
-- name: monitoring-plugins
-  src: https://github.com/bodsch/ansible-monitoring-plugins.git
-  scm: git
-  version: 1.2.0
-
 - name: icinga2
   src: https://github.com/bodsch/ansible-icinga2.git
   scm: git
-  version: 1.2.1
+  version: 1.2.2
 
 - name: icingaweb
   src: https://github.com/bodsch/ansible-icingaweb2
   scm: git
-  # version: feature/support-grafana-module
+  version: 1.2.0

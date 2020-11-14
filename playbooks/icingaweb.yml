@@ -11,8 +11,8 @@
     no_proxy: "{{ lookup('env', 'no_proxy') }}"
 
   roles:
-    #- role: nginx
+    - role: nginx
     - role: php-fpm
     - role: icingaweb
-    #- role: monitoring-plugins
-    #- role: icinga2
+    - role: monitoring-plugins
+    - role: icinga2
