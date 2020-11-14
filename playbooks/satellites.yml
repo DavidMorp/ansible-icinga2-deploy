@@ -1,6 +1,6 @@
 ---
 
-- hosts: satellite
+- hosts: satellites
   gather_facts: true
   become: true
   remote_user: ansible

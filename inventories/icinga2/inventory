@@ -49,21 +49,21 @@ all:
 
           ansible_python_interpreter: /usr/bin/python3
 
-#     satellite:
-#       hosts:
-#         satellite-1.icinga.local:
-# #          ansible_host: 192.168.130.30
-#           ansible_ssh_user: ansible
-#           ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
-#           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
-#           #ansible_python_interpreter: /usr/bin/python3
-#         satellite-2.icinga.local:
-# #          ansible_host: 192.168.130.31
-#           ansible_ssh_user: ansible
-#           ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
-#           ansible_become_pass: S1e8Y2J61WPf0uK18q0N
-# #          ansible_python_interpreter: /usr/bin/python3
-#
+    satellites:
+      hosts:
+        satellite-1.icinga.local:
+#          ansible_host: 192.168.130.30
+          ansible_ssh_user: ansible
+          ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
+          ansible_become_pass: S1e8Y2J61WPf0uK18q0N
+          #ansible_python_interpreter: /usr/bin/python3
+        satellite-2.icinga.local:
+#          ansible_host: 192.168.130.31
+          ansible_ssh_user: ansible
+          ansible_ssh_pass: S1e8Y2J61WPf0uK18q0N
+          ansible_become_pass: S1e8Y2J61WPf0uK18q0N
+#          ansible_python_interpreter: /usr/bin/python3
+
 # #        satellite-3.icinga.local:
 # ##          ansible_host: 192.168.130.32
 # #          ansible_ssh_user: ansible
