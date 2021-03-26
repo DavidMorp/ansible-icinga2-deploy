@@ -11,6 +11,7 @@ icinga2_ido:
 
 icinga2_master_features_disabled:
   - livestatus
+  - influxdb
 
 icinga2_master_features_enabled:
   - checker
@@ -18,20 +19,34 @@ icinga2_master_features_enabled:
   - ido-mysql
   - mainlog
   - notification
-  - influxdb
 
 icinga2_hostgroups:
-  - { name: 'linux-servers', displayname: 'Linux Servers', conditions: 'assign where host.vars.os == "Linux"' }
-  - { name: 'icinga-satellites', displayname: 'Icinga2 Satellites', conditions: 'assign where host.vars.satellite' }
+  - name: 'linux-servers'
+    displayname: 'Linux Servers'
+    conditions: 'assign where host.vars.os == "Linux"'
+  - name: 'icinga-satellites'
+    displayname: 'Icinga2 Satellites'
+    conditions: 'assign where host.vars.satellite'
 
 icinga2_servicegroups:
-  - { name: ping      , displayname: 'Ping Checks', conditions: 'assign where match("ping*", service.name)' }
-  - { name: disk      , displayname: 'Disk Checks', conditions: 'assign where match("disk*", service.name)' }
-  - { name: http      , displayname: 'HTTP Checks', conditions: 'assign where match("http: *", service.name)' }
-  - { name: https     , displayname: 'HTTPs Checks', conditions: 'assign where match("https: *", service.name)' }
-  - { name: icinga    , displayname: 'Icinga Checks', conditions: 'assign where match("icinga*", service.name)' }
-  - { name: cert      , displayname: 'TLS certificates', conditions: 'assign where match("tls cert*", service.name)' }
-
+  - name: ping
+    displayname: 'Ping Checks'
+    conditions: 'assign where match("ping*", service.name)'
+  - name: disk
+    displayname: 'Disk Checks'
+    conditions: 'assign where match("disk*", service.name)'
+  - name: http
+    displayname: 'HTTP Checks'
+    conditions: 'assign where match("http: *", service.name)'
+  - name: https
+    displayname: 'HTTPs Checks'
+    conditions: 'assign where match("https: *", service.name)'
+  - name: icinga
+    displayname: 'Icinga Checks'
+    conditions: 'assign where match("icinga*", service.name)'
+  - name: cert
+    displayname: 'TLS certificates'
+    conditions: 'assign where match("tls cert*", service.name)'
 
 icinga2_checkcommands:
   #

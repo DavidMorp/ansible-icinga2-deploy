@@ -14,5 +14,5 @@
     - role: nginx
     - role: php-fpm
     - role: icingaweb
-    - role: monitoring-plugins
+    - role: monitoring-tools
     - role: icinga2
