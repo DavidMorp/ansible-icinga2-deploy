@@ -1,0 +1,58 @@
+---
+- hosts: localhost
+  strategy: linear
+
+  environment:
+    NETRC: ''
+
+  vars:
+    minimal_ansible_version: 2.9.0
+    ansible_connection: local
+    mitogen_version: "0.3.0rc1"
+    mitogen_url: https://github.com/mitogen-hq/mitogen/archive/v{{ mitogen_version }}.tar.gz
+
+  tasks:
+    - name: "Check ansible version >={{ minimal_ansible_version }}"
+      assert:
+        msg: "Ansible must be {{ minimal_ansible_version }} or higher"
+        that:
+          - ansible_version.string is version(minimal_ansible_version, ">=")
+      tags:
+        - check
+
+    - name: Create mitogen plugin dir
+      file:
+        path: "{{ playbook_dir }}/../plugins/mitogen"
+        state: directory
+        mode: 0750
+      become: false
+
+    - name: download mitogen release
+      get_url:
+        url: "{{ mitogen_url }}"
+        dest: "/tmp/mitogen_{{ mitogen_version }}.tar.gz"
+        validate_certs: false
+
+    - name: extract archive
+      unarchive:
+        src: "/tmp/mitogen_{{ mitogen_version }}.tar.gz"
+        dest: "/tmp/"
+
+    - name: copy plugin
+      synchronize:
+        src: "/tmp/mitogen-{{ mitogen_version }}/"
+        dest: "{{ playbook_dir }}/../plugins/mitogen"
+
+    - name: add strategy_plugins to ansible.cfg
+      ini_file:
+        path: ../ansible.cfg
+        section: defaults
+        option: strategy_plugins
+        value: "./plugins/mitogen/ansible_mitogen/plugins/strategy"
+
+    - name: add strategy to ansible.cfg
+      ini_file:
+        path: ../ansible.cfg
+        section: defaults
+        option: strategy
+        value: mitogen_linear
