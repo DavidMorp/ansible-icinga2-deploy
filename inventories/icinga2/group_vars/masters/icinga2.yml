@@ -19,6 +19,7 @@ icinga2_master_features_enabled:
   - ido-mysql
   - mainlog
   - notification
+  - graphite
 
 icinga2_hostgroups:
   - name: 'linux-servers'
@@ -162,20 +163,22 @@ icinga2_apply_service:
 
 
 icinga2_features:
-  influxdb:
+  graphite:
     host: tsdb.icinga.local
-    port: 8086
-    enable_ha: false
-    database: icinga
-    flush_threshold: 1024
-    flush_interval: 10s
-    host_template:
-      measurement: "$host.check_command$"
-      tags:
-        hostname: "$host.name$"
-    service_template:
-      measurement: "$service.check_command$"
-      tags:
-        hostname: "$host.name$"
-        service: "$service.name$"
+#   influxdb:
+#     host: tsdb.icinga.local
+#     port: 8086
+#     enable_ha: false
+#     database: icinga
+#     flush_threshold: 1024
+#     flush_interval: 10s
+#     host_template:
+#       measurement: "$host.check_command$"
+#       tags:
+#         hostname: "$host.name$"
+#     service_template:
+#       measurement: "$service.check_command$"
+#       tags:
+#         hostname: "$host.name$"
+#         service: "$service.name$"
 

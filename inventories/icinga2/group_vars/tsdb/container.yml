@@ -1,0 +1,11 @@
+---
+container:
+  - name: graphite
+    image: "bodsch/docker-graphite:1.1.7"
+    published_ports:
+      - 8088:8080
+    volumes:
+      - /srv:/srv
+    environments:
+      USE_EXTERNAL_CARBON: "true"
+...

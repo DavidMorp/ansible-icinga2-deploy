@@ -46,17 +46,25 @@
 
 # ------------------------------------------------------------------------------------------------------------
 
-# - name: go-carbon
-#   src: https://gitlab.com/bodsch/ansible-go-carbon.git
-#   scm: git
-#   version: 1.1.0
-#
+- name: go-carbon
+  src: https://github.com/bodsch/ansible-go-carbon.git
+  scm: git
+  version: 1.5.0
+
+- name: docker
+  src: https://github.com/geerlingguy/ansible-role-docker.git
+  version: 3.0.0
+
+- name: container
+  src: https://github.com/bodsch/ansible-container.git
+  scm: git
+  version: 1.0.0
+
 # - name: carbonapi
 #   src: https://gitlab.com/bodsch/ansible-carbonapi.git
 #   scm: git
 #   version: 1.0.0
 
-#
 # - name: influxdb
 #   src: https://github.com/rockandska/ansible-role-influxdb
 #- name: influxdb
@@ -64,10 +72,10 @@
 #  scm: git
 #  version: master
 
-#- name: grafana
-#  src: https://github.com/cloudalchemy/ansible-grafana.git
-#  scm: git
-#  version: 0.18.0
+- name: grafana
+  src: https://github.com/cloudalchemy/ansible-grafana.git
+  scm: git
+  version: 0.18.0
 
 # ------------------------------------------------------------------------------------------------------------
 

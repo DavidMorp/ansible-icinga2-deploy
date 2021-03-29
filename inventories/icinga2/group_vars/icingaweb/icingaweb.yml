@@ -100,17 +100,17 @@ icinga2_api:
 
 icingaweb_external_modules:
   - graphite:
-    enabled: false
+    enabled: true
     name: graphite
     src: https://github.com/Icinga/icingaweb2-module-graphite.git
     version: v1.1.0
     # url: https://github.com/Icinga/icingaweb2-module-graphite/archive/v1.1.0.zip
     configuration:
-      host: tsdb-1.icinga.local
+      host: http://tsdb.icinga.local
       port: 8088
-      # ui:
-      #   default_time_range: 12
-      #   default_time_range_unit: hours
+      ui:
+        default_time_range: 12
+        default_time_range_unit: hours
       # advanced:
       #   # graphite_writer_host_name_template: host.tpl
       #   # graphite_writer_service_name_template: ''

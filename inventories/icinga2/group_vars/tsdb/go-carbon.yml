@@ -1,4 +1,7 @@
 ---
+
+go_carbon_whisper_data_directory: /srv/graphite/storage/whisper
+
 go_carbon_used_cron_daemon: "{{ 'cron' if ansible_os_family | lower == 'debian' else 'cronie' }}"
 
 go_carbon_storage_schema:

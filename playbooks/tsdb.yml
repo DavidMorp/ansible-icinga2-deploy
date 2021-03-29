@@ -26,6 +26,6 @@
 
   roles:
     - role: go-carbon
-    - role: carbonapi
-    - role: influxdb
+    - role: docker
+    - role: container
     - role: grafana
