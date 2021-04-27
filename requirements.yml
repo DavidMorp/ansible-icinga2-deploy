@@ -1,9 +1,9 @@
 ---
 
 - name: common
-  src: https://gitlab.com/coremedia-as-code/ansible-roles/common.git
+  src: https://gitlab.com/davidmorp-group/ansible-roles/common.git
   scm: git
-  version: 1.0.2
+  version: d-1.0.3
 
 - name: sshd
   src: https://github.com/willshersystems/ansible-sshd.git
