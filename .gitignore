@@ -1,9 +1,8 @@
 *.retry
 roles/*
 !roles/common/*
-files/*.zip
-playbooks/files/ca.crt
+files/*
+*ca.crt
 ansible_facts/*
 __pycache__
 plugins/*
-
