@@ -34,21 +34,26 @@ grafana_plugins:
   - grafana-image-renderer
 
 grafana_datasources:
+  - name: "graphite"
+    type: "graphite"
+    url: "http://{{ ansible_default_ipv4.address }}:8088"
+    isDefault: true
+
   - name: "InfluxDB - internal"
     type: "influxdb"
-    url: "http://localhost:8086"
+    url: "http://{{ ansible_default_ipv4.address }}:8086"
     basicAuth: false
     database: _internal
     #basicAuthUser: "admin"
     #basicAuthPassword: "password"
-    isDefault: true
+    isDefault: false
     #jsonData:
     #  tlsAuth: false
     #  tlsAuthWithCACert: false
     #  tlsSkipVerify: true
   - name: "InfluxDB - icinga"
     type: "influxdb"
-    url: "http://localhost:8086"
+    url: "http://{{ ansible_default_ipv4.address }}:8086"
     basicAuth: false
     database: icinga
     #basicAuthUser: "admin"

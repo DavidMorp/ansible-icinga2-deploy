@@ -1,6 +1,6 @@
 ---
 
-mariadb_bind_address: "{{ ansible_default_ipv4.address }}"
+mariadb_bind_address: 192.168.130.10 #refactor"{{ ansible_default_ipv4.address }}"
 mariadb_root_password: secr3t
 
 mariadb_databases:

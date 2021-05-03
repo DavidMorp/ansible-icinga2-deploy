@@ -9,7 +9,7 @@ icinga2_host_object:
     zone: "{{ icinga2_satellite_zone }}"
     display_name: database.icinga.local
     import: generic-host
-    address: '{{ ansible_default_ipv4.address }}'
+    address: '{{ mariadb_bind_address }}' #refactor '{{ ansible_default_ipv4.address }}'
     vars: |
       os = "Linux"
       dist = "{{ ansible_distribution }}"

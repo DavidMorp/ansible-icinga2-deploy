@@ -7,7 +7,7 @@ icinga2_host_object:
     zone: "{{ icinga2_satellite_zone }}"
     display_name: satellite-1.icinga.local
     import: generic-host
-    address: '{{ ansible_default_ipv4.address }}'
+    address: "{{ ansible_host }}" #refactor "{{ ansible_default_ipv4.address }}"
     vars: |
       os = "Linux"
       dist = "{{ ansible_distribution }}"
