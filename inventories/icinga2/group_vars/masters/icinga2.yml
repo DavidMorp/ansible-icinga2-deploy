@@ -5,7 +5,7 @@ icinga2_mode: master
 icinga2_ido:
   user: "{{ icinga2_ido_username }}"
   password: "{{ icinga2_ido_password }}"
-  host: '192.168.130.10'
+  host: '192.168.130.10' #TODO find a good variable to put here 
   cleanup:
     acknowledgements_age: 72h
 
@@ -181,4 +181,3 @@ icinga2_features:
 #       tags:
 #         hostname: "$host.name$"
 #         service: "$service.name$"
-
